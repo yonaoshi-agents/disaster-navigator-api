@@ -28,7 +28,7 @@ async def create_itinerary(request: ItineraryCreateRequest):
 
 @router.get("", response_model=List[ItineraryResponse])
 async def get_itineraries(
-    user_mailaddress: Optional[str] = Query(None, description="ユーザーのメールアドレスでフィルタリング")
+    email: Optional[str] = Query(None, description="ユーザーのメールアドレスでフィルタリング")
 ):
     """
     旅行日程を取得
@@ -37,8 +37,8 @@ async def get_itineraries(
     そのユーザーに紐づく旅行日程のみを取得します。
     指定しない場合は全ての旅行日程を取得します。
     """
-    if user_mailaddress:
-        return itinerary_service.get_itineraries_by_user(user_mailaddress)
+    if email:
+        return itinerary_service.get_itineraries_by_user(email)
     else:
         return itinerary_service.get_all_itineraries()
 

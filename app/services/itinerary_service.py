@@ -28,14 +28,12 @@ class ItineraryService:
         # 旅行日程モデルを作成
         itinerary = Itinerary(
             itinerary_id=itinerary_id,
-            user_mailaddress=request.user_mailaddress,
-            title=request.title,
+            email=request.email,
             destination=request.destination,
             start_date=request.start_date,
             end_date=request.end_date,
-            companions=request.companions,
-            participants=[p.model_dump() for p in request.participants],
-            description=request.description
+            num_adults=request.num_adults,
+            num_children=request.num_children
         )
         
         # ストレージに保存
@@ -59,12 +57,12 @@ class ItineraryService:
             return ItineraryResponse(**itinerary.to_dict())
         return None
     
-    def get_itineraries_by_user(self, user_mailaddress: str) -> List[ItineraryResponse]:
+    def get_itineraries_by_user(self, email: str) -> List[ItineraryResponse]:
         """
         ユーザーに紐づく旅行日程を全て取得
         
         Args:
-            user_mailaddress: ユーザーのメールアドレス
+            email: ユーザーのメールアドレス
             
         Returns:
             旅行日程のリスト
@@ -72,7 +70,7 @@ class ItineraryService:
         user_itineraries = [
             ItineraryResponse(**itinerary.to_dict())
             for itinerary in self._itineraries.values()
-            if itinerary.user_mailaddress == user_mailaddress
+            if itinerary.email == email
         ]
         return user_itineraries
     
