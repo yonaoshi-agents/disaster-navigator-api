@@ -4,6 +4,7 @@ Disaster Navigator API
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.controllers import hello_controller, user_controller, itinerary_controller, next_action_controller, earthquake_controller
 
 # FastAPIアプリケーションの初期化
@@ -11,6 +12,15 @@ app = FastAPI(
     title="Disaster Navigator API",
     description="災害情報を提供するAPIサービス",
     version="1.0.0"
+)
+
+# CORSの設定（全て許可）
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 全てのオリジンを許可
+    allow_credentials=True,
+    allow_methods=["*"],  # 全てのHTTPメソッドを許可
+    allow_headers=["*"],  # 全てのヘッダーを許可
 )
 
 # ルーターの登録
