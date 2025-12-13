@@ -4,6 +4,7 @@
 """
 
 import random
+from itertools import cycle
 from app.models.earthquake_model import EarthquakeModel
 
 
@@ -11,8 +12,12 @@ class EarthquakeService:
     """地震情報サービス"""
     
     # 震度の選択肢
-    SEISMIC_INTENSITIES = ["1", "2", "3", "4", "5-", "5+", "6-", "6+", "7"]
+    SEISMIC_INTENSITIES = ["3", "4", "6-"]
     
+    def __init__(self):
+        # 無限にループするイテレータを作成
+        self._intensity_cycle = cycle(self.SEISMIC_INTENSITIES)
+
     def get_earthquake_info(self) -> EarthquakeModel:
         """
         地震情報を取得
@@ -20,8 +25,8 @@ class EarthquakeService:
         Returns:
             EarthquakeModel: 地震情報
         """
-        # ランダムに震度を選択
-        seismic_intensity = random.choice(self.SEISMIC_INTENSITIES)
+        # 順番に震度を選択
+        seismic_intensity = next(self._intensity_cycle)
         
         return EarthquakeModel(
             seismic_intensity=seismic_intensity,
