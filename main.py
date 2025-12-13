@@ -4,7 +4,7 @@ Disaster Navigator API
 """
 
 from fastapi import FastAPI
-from app.controllers import hello_controller, user_controller
+from app.controllers import hello_controller, user_controller, itinerary_controller, next_action_controller
 
 # FastAPIアプリケーションの初期化
 app = FastAPI(
@@ -16,6 +16,8 @@ app = FastAPI(
 # ルーターの登録
 app.include_router(hello_controller.router)
 app.include_router(user_controller.router)
+app.include_router(itinerary_controller.router)
+app.include_router(next_action_controller.router)
 
 
 @app.get("/")
