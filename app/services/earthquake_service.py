@@ -12,7 +12,7 @@ class EarthquakeService:
     """地震情報サービス"""
     
     # 震度の選択肢
-    SEISMIC_INTENSITIES = ["3", "4", "6-"]
+    SEISMIC_INTENSITIES = ["6-"]
     
     def __init__(self):
         # 無限にループするイテレータを作成
