@@ -33,30 +33,6 @@ def get_next_actions(email: str, seismic_intensity: str) -> NextActionsResponse:
                 message="Enjoy your trip!"
             )
         ]
-    elif seismic_intensity == "5+":
-        # パターン3: インタービュー用（震度100）
-        cards = [
-            Card(
-                id=1,
-                imageUrl="https://image/url.here",
-                message="Move away from walls"
-            ),
-            Card(
-                id=2,
-                imageUrl="https://image/url.here",
-                message="Protect your head"
-            ),
-            Card(
-                id=3,
-                imageUrl="https://image/url.here",
-                message="Take a deep breath and calm down"
-            ),
-            Card(
-                id=4,
-                imageUrl="https://image/url.here",
-                message="Wait until the shaking stops"
-            ),
-        ]
     else:
         # パターン2: 震度6- (Safe default for high intensity)
         cards = [
@@ -68,25 +44,20 @@ def get_next_actions(email: str, seismic_intensity: str) -> NextActionsResponse:
             Card(
                 id=2,
                 imageUrl="https://image/url.here",
-                message="Stay low"
+                message="Drop down & Hide under a desk"
             ),
             Card(
                 id=3,
                 imageUrl="https://image/url.here",
-                message="Hide under a desk"
+                message="Protect your head"
             ),
             Card(
                 id=4,
                 imageUrl="https://image/url.here",
-                message="Protect your head"
-            ),
-            Card(
-                id=5,
-                imageUrl="https://image/url.here",
                 message="Take a deep breath and calm down"
             ),
             Card(
-                id=6,
+                id=5,
                 imageUrl="https://image/url.here",
                 message="Wait until the shaking stops"
             ),
